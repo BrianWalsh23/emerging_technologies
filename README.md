@@ -30,7 +30,7 @@ To run this project locally:
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone <https://github.com/BrianWalsh23/emerging_technologies.git>
 2. Install dependencies:
    ```bash
    pip install -r requirements.txt
@@ -38,3 +38,26 @@ To run this project locally:
    ```bash
    jupyter notebook problems.ipynb
 
+## Problem 1: Generating Random Boolean Functions
+
+Problem 1 focuses on the construction of Boolean functions that satisfy the
+Deutsch–Jozsa promise condition. For a function with four Boolean inputs, there
+are 2⁴ = 16 possible input combinations. Under the promise, the function is
+guaranteed to be either *constant* or *balanced*.
+
+A constant function returns the same Boolean value for all possible inputs.
+A balanced function returns True for exactly half of the input combinations and
+False for the remaining half. These properties are fundamental to the operation
+of the Deutsch–Jozsa algorithm and are enforced explicitly in this implementation.
+
+The notebook defines helper generators for constant and balanced functions and
+then composes them into a single function, `random_constant_balanced`, which
+randomly returns one of the two valid function types. Balanced functions are
+constructed by selecting exactly half of the possible input combinations to
+evaluate to True this ensures the promise condition is satisfied by construction.
+
+Verification code is included to evaluate generated functions across
+all possible inputs. This confirms that constant functions produce uniform
+outputs, while balanced functions produce an equal number of True and False
+results. This explicit verification demonstrates correctness and provides a
+classical baseline for comparison with later quantum implementations.
