@@ -61,3 +61,26 @@ all possible inputs. This confirms that constant functions produce uniform
 outputs, while balanced functions produce an equal number of True and False
 results. This explicit verification demonstrates correctness and provides a
 classical baseline for comparison with later quantum implementations.
+
+
+
+
+
+
+
+## References
+
+- IBM Quantum. *Deutsch–Jozsa Algorithm*.  
+  https://quantum.cloud.ibm.com/learning/en/modules/computer-science/deutsch-jozsa  
+  Used to define the Deutsch–Jozsa problem, including the promise condition that
+  Boolean functions are either constant or balanced.
+
+- IBM Quantum. *Deutsch’s Algorithm*.  
+  https://quantum.cloud.ibm.com/learning/en/courses/fundamentals-of-quantum-algorithms/quantum-query-algorithms/deutsch-algorithm  
+  Provides background on the single-input case and motivates the extension to
+  multi-input functions explored in this project.
+
+- IBM Quantum. *Qiskit*.  
+  https://www.ibm.com/quantum/qiskit  
+  Official framework used for implementing and simulating quantum circuits in
+  the quantum sections of the notebook.
