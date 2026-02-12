@@ -69,6 +69,13 @@ classical baseline for comparison with later quantum implementations.
 
 
 ## References
+- Deutsch, D., & Jozsa, R. (1992). Rapid solution of problems by quantum 
+  computation. *Proceedings of the Royal Society of London A*, 439(1907), 
+  553–558. https://doi.org/10.1098/rspa.1992.0167
+
+- Jozsa, R. (1993). Computation and quantum superposition. *Proceedings 
+  of the 7th Annual Structure in Complexity Theory Conference*, IEEE, 
+  192–194.
 
 - IBM Quantum. *Deutsch–Jozsa Algorithm*.  
   https://quantum.cloud.ibm.com/learning/en/modules/computer-science/deutsch-jozsa  
