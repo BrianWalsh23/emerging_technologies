@@ -62,6 +62,35 @@ outputs, while balanced functions produce an equal number of True and False
 results. This explicit verification demonstrates correctness and provides a
 classical baseline for comparison with later quantum implementations.
 
+## Problem 2: Classical Testing for Function Type
+
+Problem 2 examines how a classical deterministic algorithm can be used to
+determine whether a Boolean function satisfying the Deutsch–Jozsa promise
+condition is constant or balanced.
+
+Given a function with four Boolean inputs, a classical approach must rely on
+evaluating the function on multiple inputs and observing the resulting outputs.
+This requires evaluating all 2⁴ = 16 possible input combinations to guarantee a correct classification.
+
+The notebook implements a classical classifier that evaluates the function on
+the full input space and checks whether all outputs are identical or evenly
+split between True and False. This strategy guarantees correctness
+but highlights the exponential growth in required function evaluations as the
+number of inputs increases.
+
+The notebook includes a theoretical efficiency analysis. Under the promise condition, a balanced
+function can produce at most eight identical outputs. As a result, if nine
+evaluated outputs are identical this means the function must be constant. This establishes
+that a classical deterministic algorithm requires at most 2ⁿ⁻¹ + 1 function
+calls to be 100% certain, which is nine calls for the four-input case.
+
+This problem provides a classical baseline for comparison with the quantum
+Deutsch–Jozsa algorithm, which determines the same global property using a
+single oracle query. The contrast illustrates a fundamental limitation of
+classical computation when solving promise problems and motivates the use of
+quantum query algorithms in later problems.
+
+
 
 
 
