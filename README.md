@@ -90,7 +90,32 @@ single oracle query. The contrast illustrates a fundamental limitation of
 classical computation when solving promise problems and motivates the use of
 quantum query algorithms in later problems.
 
+## Problem 3: Quantum Oracles for Deutsch's Algorithm
 
+Problem 3 transitions from classical to quantum computation by implementing the
+quantum oracles required for Deutsch's algorithm. In the single-input case,
+there are exactly four possible Boolean functions: two constant (f(x) = 0,
+f(x) = 1) and two balanced (f(x) = x, f(x) = ¬x).
+
+Each oracle is implemented as a reversible quantum circuit that encodes its
+corresponding Boolean function through the transformation |x⟩|y⟩ -> |x⟩|y ⊕ f(x)⟩.
+The constant oracles are straightforward: the f(x) = 0 oracle performs no
+operation, while the f(x) = 1 oracle applies an X gate to flip the output qubit.
+The balanced oracles require conditional logic: the identity function uses a
+CNOT gate, while the NOT function uses an X-CNOT-X sequence to invert the
+control condition.
+
+The notebook implements Deutsch's algorithm, which determines whether a function
+is constant or balanced through a single oracle evaluation. The algorithm
+exploits quantum superposition and phase kickback to extract global properties
+of the function without evaluating individual inputs. Measurement outcomes
+confirm that constant functions produce result 0, while balanced functions
+produce result 1. This demonstrates the quantum advantage over the classical
+two-query requirement.
+
+This problem establishes the foundation for quantum query algorithms by
+introducing the oracle model and demonstrating how quantum interference enables
+more efficient function classification than classical deterministic approaches.
 
 
 
