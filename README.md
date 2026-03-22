@@ -117,7 +117,30 @@ This problem establishes the foundation for quantum query algorithms by
 introducing the oracle model and demonstrating how quantum interference enables
 more efficient function classification than classical deterministic approaches.
 
+## Problem 4: Deutsch's Algorithm with Qiskit
 
+Problem 4 implements Deutsch's algorithm as a complete quantum circuit using
+Qiskit. This problem builds directly on the quantum oracles developed in Problem 3. The
+circuit determines whether a single-input Boolean function is constant or
+balanced through a single oracle query, demonstrating a fundamental quantum
+computational advantage.
+
+The circuit follows a five-step design: preparing the output qubit in state 1,
+creating superposition on both qubits using Hadamard gates, applying the oracle
+transformation, performing an interference step with a second Hadamard gate on
+the input qubit and then measuring the result. This sequence exploits quantum
+superposition and phase kickback to encode function values as relative phases.
+Then they are converted into measurable amplitude differences through quantum
+interference.
+
+The key mechanism is that constant functions produce identical phases this results
+in constructive interference and measurement outcome 0. Balanced functions
+produce opposite phases and cause destructive interference and measurement outcome 1.
+This allows deterministic classification with a single oracle query. When compared to
+the classical requirement of two queries in the worst case established in Problem 2.
+
+The notebook includes circuit visualization and demonstrates the algorithm with
+all four oracles thus confirming the quantum advantage through practical implementation.
 
 
 
