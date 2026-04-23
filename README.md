@@ -1,11 +1,9 @@
 # Emerging Technologies Assessment
 
 This repository contains coursework for the *Emerging Technologies* module.
-The project explores the differences between classical and quantum algorithms
-through the Deutsch and Deutsch–Jozsa problems.
+The project explores the differences between classical and quantum algorithms through the Deutsch and Deutsch–Jozsa problems.
 
-The implementation is presented as a Jupyter notebook and is structured to
-demonstrate problem-solving, theoretical understanding and clean software
+The implementation is presented as a Jupyter notebook and is structured to demonstrate problem-solving, theoretical understanding and clean software
 engineering practices suitable for an informed computing audience.
 
 ---
@@ -40,110 +38,91 @@ To run this project locally:
 
 ## Problem 1: Generating Random Boolean Functions
 
-Problem 1 focuses on the construction of Boolean functions that satisfy the
-Deutsch–Jozsa promise condition. For a function with four Boolean inputs, there
-are 2⁴ = 16 possible input combinations. Under the promise, the function is
-guaranteed to be either *constant* or *balanced*.
+Problem 1 focuses on the construction of Boolean functions that satisfy the Deutsch–Jozsa promise condition. For a function with four Boolean inputs, there
+are 2⁴ = 16 possible input combinations. Under the promise, the function is guaranteed to be either *constant* or *balanced*.
 
 A constant function returns the same Boolean value for all possible inputs.
-A balanced function returns True for exactly half of the input combinations and
-False for the remaining half. These properties are fundamental to the operation
+A balanced function returns True for exactly half of the input combinations and False for the remaining half. These properties are fundamental to the operation
 of the Deutsch–Jozsa algorithm and are enforced explicitly in this implementation.
 
-The notebook defines helper generators for constant and balanced functions and
-then composes them into a single function, `random_constant_balanced`, which
-randomly returns one of the two valid function types. Balanced functions are
-constructed by selecting exactly half of the possible input combinations to
+The notebook defines helper generators for constant and balanced functions and then composes them into a single function, `random_constant_balanced`, which
+randomly returns one of the two valid function types. Balanced functions are constructed by selecting exactly half of the possible input combinations to
 evaluate to True this ensures the promise condition is satisfied by construction.
 
-Verification code is included to evaluate generated functions across
-all possible inputs. This confirms that constant functions produce uniform
-outputs, while balanced functions produce an equal number of True and False
-results. This explicit verification demonstrates correctness and provides a
-classical baseline for comparison with later quantum implementations.
+Verification code is included to evaluate generated functions across all possible inputs. This confirms that constant functions produce uniform
+outputs, while balanced functions produce an equal number of True and False results. 
+This explicit verification demonstrates correctness and provides a classical baseline for comparison with later quantum implementations.
 
 ## Problem 2: Classical Testing for Function Type
 
-Problem 2 examines how a classical deterministic algorithm can be used to
-determine whether a Boolean function satisfying the Deutsch–Jozsa promise
+Problem 2 examines how a classical deterministic algorithm can be used to determine whether a Boolean function satisfying the Deutsch–Jozsa promise
 condition is constant or balanced.
 
-Given a function with four Boolean inputs, a classical approach must rely on
-evaluating the function on multiple inputs and observing the resulting outputs.
+Given a function with four Boolean inputs, a classical approach must rely on evaluating the function on multiple inputs and observing the resulting outputs.
 This requires evaluating all 2⁴ = 16 possible input combinations to guarantee a correct classification.
 
-The notebook implements a classical classifier that evaluates the function on
-the full input space and checks whether all outputs are identical or evenly
-split between True and False. This strategy guarantees correctness
-but highlights the exponential growth in required function evaluations as the
+The notebook implements a classical classifier that evaluates the function on the full input space and checks whether all outputs are identical or evenly
+split between True and False. This strategy guarantees correctness but highlights the exponential growth in required function evaluations as the
 number of inputs increases.
 
-The notebook includes a theoretical efficiency analysis. Under the promise condition, a balanced
-function can produce at most eight identical outputs. As a result, if nine
-evaluated outputs are identical this means the function must be constant. This establishes
-that a classical deterministic algorithm requires at most 2ⁿ⁻¹ + 1 function
+The notebook includes a theoretical efficiency analysis. Under the promise condition, a balanced function can produce at most eight identical outputs. As a result, if nine
+evaluated outputs are identical this means the function must be constant. This establishes that a classical deterministic algorithm requires at most 2ⁿ⁻¹ + 1 function
 calls to be 100% certain, which is nine calls for the four-input case.
 
-This problem provides a classical baseline for comparison with the quantum
-Deutsch–Jozsa algorithm, which determines the same global property using a
-single oracle query. The contrast illustrates a fundamental limitation of
-classical computation when solving promise problems and motivates the use of
+This problem provides a classical baseline for comparison with the quantum Deutsch–Jozsa algorithm, which determines the same global property using a
+single oracle query. The contrast illustrates a fundamental limitation of classical computation when solving promise problems and motivates the use of
 quantum query algorithms in later problems.
 
 ## Problem 3: Quantum Oracles for Deutsch's Algorithm
 
-Problem 3 transitions from classical to quantum computation by implementing the
-quantum oracles required for Deutsch's algorithm. In the single-input case,
-there are exactly four possible Boolean functions: two constant (f(x) = 0,
-f(x) = 1) and two balanced (f(x) = x, f(x) = ¬x).
+Problem 3 transitions from classical to quantum computation by implementing the quantum oracles required for Deutsch's algorithm. In the single-input case,
+there are exactly four possible Boolean functions: two constant (f(x) = 0, f(x) = 1) and two balanced (f(x) = x, f(x) = ¬x).
 
-Each oracle is implemented as a reversible quantum circuit that encodes its
-corresponding Boolean function through the transformation |x⟩|y⟩ -> |x⟩|y ⊕ f(x)⟩.
-The constant oracles are straightforward: the f(x) = 0 oracle performs no
-operation, while the f(x) = 1 oracle applies an X gate to flip the output qubit.
-The balanced oracles require conditional logic: the identity function uses a
-CNOT gate, while the NOT function uses an X-CNOT-X sequence to invert the
+Each oracle is implemented as a reversible quantum circuit that encodes its corresponding Boolean function through the transformation |x⟩|y⟩ -> |x⟩|y ⊕ f(x)⟩.
+The constant oracles are straightforward: the f(x) = 0 oracle performs no operation, while the f(x) = 1 oracle applies an X gate to flip the output qubit.
+The balanced oracles require conditional logic: the identity function uses a CNOT gate, while the NOT function uses an X-CNOT-X sequence to invert the
 control condition.
 
-The notebook implements Deutsch's algorithm, which determines whether a function
-is constant or balanced through a single oracle evaluation. The algorithm
-exploits quantum superposition and phase kickback to extract global properties
-of the function without evaluating individual inputs. Measurement outcomes
-confirm that constant functions produce result 0, while balanced functions
-produce result 1. This demonstrates the quantum advantage over the classical
-two-query requirement.
+The notebook implements Deutsch's algorithm, which determines whether a function is constant or balanced through a single oracle evaluation. The algorithm
+exploits quantum superposition and phase kickback to extract global properties of the function without evaluating individual inputs. Measurement outcomes
+confirm that constant functions produce result 0, while balanced functions produce result 1. 
+This demonstrates the quantum advantage over the classical two-query requirement.
 
-This problem establishes the foundation for quantum query algorithms by
-introducing the oracle model and demonstrating how quantum interference enables
+This problem establishes the foundation for quantum query algorithms by introducing the oracle model and demonstrating how quantum interference enables
 more efficient function classification than classical deterministic approaches.
 
 ## Problem 4: Deutsch's Algorithm with Qiskit
 
-Problem 4 implements Deutsch's algorithm as a complete quantum circuit using
-Qiskit. This problem builds directly on the quantum oracles developed in Problem 3. The
-circuit determines whether a single-input Boolean function is constant or
-balanced through a single oracle query, demonstrating a fundamental quantum
-computational advantage.
+Problem 4 implements Deutsch's algorithm as a complete quantum circuit using Qiskit. 
+This problem builds directly on the quantum oracles developed in Problem 3. The circuit determines whether a single-input Boolean function is constant or
+balanced through a single oracle query, demonstrating a fundamental quantum computational advantage.
 
-The circuit follows a five-step design: preparing the output qubit in state 1,
-creating superposition on both qubits using Hadamard gates, applying the oracle
-transformation, performing an interference step with a second Hadamard gate on
-the input qubit and then measuring the result. This sequence exploits quantum
+The circuit follows a five-step design: preparing the output qubit in state 1, creating superposition on both qubits using Hadamard gates, applying the oracle
+transformation, performing an interference step with a second Hadamard gate on the input qubit and then measuring the result. This sequence exploits quantum
 superposition and phase kickback to encode function values as relative phases.
-Then they are converted into measurable amplitude differences through quantum
-interference.
+Then they are converted into measurable amplitude differences through quantum interference.
 
-The key mechanism is that constant functions produce identical phases this results
-in constructive interference and measurement outcome 0. Balanced functions
-produce opposite phases and cause destructive interference and measurement outcome 1.
-This allows deterministic classification with a single oracle query. When compared to
+The key mechanism is that constant functions produce identical phases this results in constructive interference and measurement outcome 0. Balanced functions
+produce opposite phases and cause destructive interference and measurement outcome 1. This allows deterministic classification with a single oracle query. When compared to
 the classical requirement of two queries in the worst case established in Problem 2.
 
-The notebook includes circuit visualization and demonstrates the algorithm with
-all four oracles thus confirming the quantum advantage through practical implementation.
+The notebook includes circuit visualization and demonstrates the algorithm with all four oracles thus confirming the quantum advantage through practical implementation.
 
+## Problem 5: Scaling to the Deutsch–Jozsa Algorithm
 
+Problem 5 generalises Deutsch's single-input algorithm to handle multi-input Boolean functions. It demonstrates how quantum advantage scales with problem size.
+For four-bit Boolean functions, the classical deterministic approach established in Problem 2 requires up to nine function evaluations to guarantee correct 
+classification. The Deutsch–Jozsa algorithm achieves the same result with a single oracle query.
 
+The implementation converts classical Boolean functions from Problem 1 into quantum oracles using multi-controlled X gates with an X-MCX-X pattern that
+creates control-on-0 mechanisms. This approach encodes the complete truth table as a reversible quantum transformation. The algorithm follows the same structure
+as Deutsch's: prepare qubits in superposition, apply the oracle, perform interference on input qubits and measure. Quantum parallelism allows simultaneous
+evaluation of all 16 possible inputs through superposition.
+
+The results demonstrate correct behavior: constant functions produce measurement outcome '0000', while balanced functions produce diverse non-zero states. This
+confirms the exponential query advantage—as input size n grows, classical worst-case complexity is 2^(n-1) + 1 while quantum complexity remains constant
+at one query. The notebook includes detailed explanations of the oracle encoding mechanism, results analysis and theoretical context exploring how this algorithm
+inspired later breakthroughs including Simon's and Shor's algorithms.
 
 ## References
 - Deutsch, D., & Jozsa, R. (1992). Rapid solution of problems by quantum 
